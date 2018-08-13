@@ -17,7 +17,7 @@ SCIP is currently one of the fastest non-commercial solvers for mixed integer pr
   - Installation on Mac OS X 10.13.6
   
     1. Download [SCIPOptSuite-6.0.0-Darwin.dmg](http://scip.zib.de/download.php?fname=SCIPOptSuite-6.0.0-Darwin.dmg)
-    2. Open `SCIPOptSuite-6.0.0-Darwin.dmg` and copy the three directories, `bin`, `include`, and `lib` into some place (e.g., `sudo make /opt/scip` and then `sudo cp -R /Volumes/SCIPOptSuite-6.0.0-Darwin/bin /Volumes/SCIPOptSuite-6.0.0-Darwin/include /Volumes/SCIPOptSuite-6.0.0-Darwin/lib /opt/scip`)
+    2. Open `SCIPOptSuite-6.0.0-Darwin.dmg` and copy the three directories, `bin`, `include`, and `lib` into some place (e.g., `sudo mkdir /opt/scip` and then `sudo cp -R /Volumes/SCIPOptSuite-6.0.0-Darwin/bin /Volumes/SCIPOptSuite-6.0.0-Darwin/include /Volumes/SCIPOptSuite-6.0.0-Darwin/lib /opt/scip`)
     3. Assume Anaconda Python is already installed on `/opt/conda`
     4. Change the dyld path as follows: (Repeat the same process for `soplex` and `zimpl` as well as `/opt/scip/lib/libscip.6.0.0.0.dylib`)
 ```
