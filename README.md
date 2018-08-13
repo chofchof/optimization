@@ -37,12 +37,20 @@ SCIP is currently one of the fastest non-commercial solvers for mixed integer pr
     $ scip (checks whether it works)
     SCIP version 6.0.0 ...
 ```
+
+  - Installation on Linux (e.g. openSUSE Leap 42 under Windows Subsystem for Linux)
+  
+    1. Download [SCIPOptSuite-6.0.0-Linux.sh](http://scip.zib.de/download.php?fname=SCIPOptSuite-6.0.0-Linux.sh)
+    2. Install by running `sudo bash SCIPOptSuite-6.0.0-Linux.sh --prefix=/opt` and then `cd /opt && sudo ln -s SCIPOptSuite-6.0.0-Linux scip`
+    3. Install the packages `liblapack3` and `libblas3` (in the case of openSUSE Leap 42, run `sudo zypper install liblapack3 libblas3`)
     
+    > **Note:** In the case of Cent OS 7, you may need `patchelf` to adjust the ld path. You can install it by running `conda install patchelf` under Linux.
+
   - [PySCIPOpt](https://github.com/SCIP-Interfaces/PySCIPOpt) - Python interface for the SCIP Optimization Suite
   
     1. Install [Anaconda Python 3.6](https://www.anaconda.com/download/)
     2. Install [SCIP 6.0.0](http://scip.zib.de/#download)
-    3. Open a conda prompt
+    3. Open a conda prompt and run `conda activate`
     4. Check that `cython` is already installed by running `conda list | grep cython`. Otherwise, run `conda install cython`
     5. Set the environment variable `export SCIPOPTDIR=/opt/scip` (Linux & Mac OS X) (See [INSTALL.rst](https://github.com/SCIP-Interfaces/PySCIPOpt/blob/master/INSTALL.rst) for more details)
     6. Install PySCIPOpt 2.0.0 by running `pip install pyscipopt`
