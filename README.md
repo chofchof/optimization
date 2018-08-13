@@ -31,8 +31,8 @@ SCIP is currently one of the fastest non-commercial solvers for mixed integer pr
     $ sudo install_name_tool -change /usr/local/opt/gmp/lib/libgmpxx.4.dylib /opt/conda/lib/libgmpxx.4.dylib scip 
     $ otool -L scip (checks whether the dyld path was changed properly)
     scip:
-            /usr/local/opt/gmp/lib/libgmp.10.dylib (...)
-            /usr/local/opt/gmp/lib/libgmpxx.4.dylib (...)
+            /opt/conda/lib/libgmp.10.dylib (...)
+            /opt/conda/lib/libgmpxx.4.dylib (...)
             ...
     $ scip (checks whether it works)
     SCIP version 6.0.0 ...
