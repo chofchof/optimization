@@ -39,16 +39,19 @@ SCIP is currently one of the fastest non-commercial solvers for mixed integer pr
 ```
 
   - Installation on Linux (e.g. openSUSE Leap 42 under Windows Subsystem for Linux)
-  
-    1. Download [SCIPOptSuite-6.0.0-win64-VS15.exe](http://scip.zib.de/download.php?fname=SCIPOptSuite-6.0.0-win64-VS15.exe)
-    2. Install by double click the icon of the file `SCIPOptSuite-6.0.0-win64-VS15.exe`
-    3. Be sure to add the path.
-    
+
+    1. Download [SCIPOptSuite-6.0.0-Linux.sh](http://scip.zib.de/download.php?fname=SCIPOptSuite-6.0.0-Linux.sh)
+    2. Install by running `sudo bash SCIPOptSuite-6.0.0-Linux.sh --prefix=/opt` and then `cd /opt && sudo ln -s SCIPOptSuite-6.0.0-Linux scip`
+    3. Install the packages `liblapack3` and `libblas3` (in the case of openSUSE Leap 42, run `sudo zypper install liblapack3 libblas3`)
+
     > **Note:** In the case of Cent OS 7, you may need `patchelf` to adjust the ld path. You can install it by running `conda install patchelf` under Linux.
 
   - Installation on Windows 10
-  
-    1. Download [SCIPOptSuite-6.0.0-Linux.sh](http://scip.zib.de/download.php?fname=SCIPOptSuite-6.0.0-Linux.sh)
+
+    1. Download [SCIPOptSuite-6.0.0-win64-VS15.exe](http://scip.zib.de/download.php?fname=SCIPOptSuite-6.0.0-win64-VS15.exe)
+    2. Install by double click the icon of the file `SCIPOptSuite-6.0.0-win64-VS15.exe`
+    3. Be sure to add the path.    
+
   - [PySCIPOpt](https://github.com/SCIP-Interfaces/PySCIPOpt) - Python interface for the SCIP Optimization Suite
   
     1. Install [Anaconda Python 3.6](https://www.anaconda.com/download/)
