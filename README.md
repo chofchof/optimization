@@ -52,7 +52,7 @@ SCIP is currently one of the fastest non-commercial solvers for mixed integer pr
     2. Install [SCIP 6.0.0](http://scip.zib.de/#download)
     3. Open a conda prompt and run `conda activate`
     4. Check that `cython` is already installed by running `conda list | grep cython`. Otherwise, run `conda install cython`
-    5. Set the environment variable `export SCIPOPTDIR=/opt/scip` (Linux & Mac OS X) (See [INSTALL.rst](https://github.com/SCIP-Interfaces/PySCIPOpt/blob/master/INSTALL.rst) for more details)
+    5. Set the environment variable `export SCIPOPTDIR=/opt/scip` (Linux & Mac OS X) or `set SCIPOPTDIR=C:\Program Files\SCIPOptSuite 6.0.0` (Windows 10) (See [INSTALL.rst](https://github.com/SCIP-Interfaces/PySCIPOpt/blob/master/INSTALL.rst) for more details)
     6. Install PySCIPOpt 2.0.0 by running `pip install pyscipopt`
     7. How to check whether PySCIPOPt 2.0.0 is installed properly.
       - Mac OS X: `DYLD_LIBRARY_PATH=/opt/scip/lib; ipython -c 'import pyscipopt'` or `export DYLD_LIBRARY_PATH=/opt/scip/lib`
