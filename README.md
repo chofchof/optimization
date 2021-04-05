@@ -12,24 +12,14 @@ SCIP is currently one of the fastest non-commercial solvers for mixed integer pr
 
     
 
-  - Installation on macOS 10.15 (without Homebrew)
-
-    1. Download [SCIPOptSuite-7.0.2-Darwin-no-Ipopt.sh](https://www.scipopt.org/download.php?fname=SCIPOptSuite-7.0.2-Darwin-no-Ipopt.sh).
-    
-    2. Install the file on `/opt/SCIPOptSuite-7.0.2` by running the following comand.
+- Installation on macOS 10.15 (without Homebrew)
+    1. Install [Miniconda Python 3](https://docs.conda.io/en/latest/miniconda.html) (Python 3.8 or 3.9, 64-bit).
+      
+    2. Run the following commands.
        ```bash
-       $ sudo bash SCIPOptSuite-7.0.2-Darwin-no-Ipopt.sh --prefix=/opt
+       > conda create -n scip scip soplex zimpl gcg -c conda-forge
+       > conda activate scip
        ```
-       
-    3. Make `gcg` work by modifying the  `LC_LOAD_DYLIB` command.
-       ```bash
-       $ sudo install_name_tool -change libscip.7.0.dylib @executable_path/../lib/libscip.7.0.dylib /opt/SCIPOptSuite-7.0.2-Darwin/bin/gcg
-       ```
-       
-    <div class="alert alert-block alert-warning">
-    <b>Warning:</b> 1. Notice that this installation does not work with PySCIPOpt.<br/>
-      2. Neither `SCIPOptSuite-7.0.2-Darwin-Ipopt-gcc7.sh` nor `SCIPOptSuite-7.0.2-Darwin-Ipopt-gcc10.sh` does not work if the exact libraries were not installed using Homebrew.
-    </div>
 
    
 
@@ -74,7 +64,7 @@ Python interface for the SCIP Optimization Suite
       
        - [Miniconda Python 3](https://docs.conda.io/en/latest/miniconda.html) (Python 3.8 or 3.9, 64-bit)
        
-    3. Run the following commands.
+    2. Run the following commands.
        ```bash
        > conda create -n scip pyscipopt -c conda-forge
        > conda activate scip
