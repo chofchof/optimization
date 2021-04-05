@@ -1,43 +1,38 @@
 # Optimization Tools and Exercises
 
-## [Google Optimization Tools](https://developers.google.com/optimization/)
+## [SCIP Optimization Suite](https://www.scipopt.org)
 
-Google Optimization Tools (OR-Tools) is a fast and portable software suite for solving combinatorial optimization problems.
+SCIP is currently one of the fastest non-commercial solvers for mixed integer programming (MIP) and mixed integer nonlinear programming (MINLP). It is also a framework for constraint integer programming and branch-cut-and-price. It allows for total control of the solution process and the access of detailed information down to the guts of the solver. (https://www.scipopt.org)
 
-  - [or-tools](https://github.com/google/or-tools) - Google's Operations Research tools in GitHub
+  - Installation on Windows 10 (64-bit only)
 
-    1. Install [Anaconda Python 3.6 or 3.7](https://www.anaconda.com/download/)
-    2. Open a conda prompt
-    3. Install or-tools 6.8 by running `pip install ortools`
+    1. Download [SCIPOptSuite-7.0.2-win64-VS15.exe](https://www.scipopt.org/download.php?fname=SCIPOptSuite-7.0.2-win64-VS15.exe).
+    2. Install by double click the icon of the file.
+    3. Open `Advanced system settings(고급 시스템 설정)` in Windows 10 and click `Environment variables(환경 변수)` to add `C:\Program Files\SCIPOptSuite 7.0.2\bin` in the `Path` variable.
 
-## [SCIP Optimization Suite](http://scip.zib.de/)
+    
 
-SCIP is currently one of the fastest non-commercial solvers for mixed integer programming (MIP) and mixed integer nonlinear programming (MINLP). It is also a framework for constraint integer programming and branch-cut-and-price. It allows for total control of the solution process and the access of detailed information down to the guts of the solver.
+  - Installation on macOS 10.15 (without Homebrew)
 
-  - Installation on Mac OS X 10.13.6
-  
-    1. Download [SCIPOptSuite-6.0.0-Darwin.dmg](http://scip.zib.de/download.php?fname=SCIPOptSuite-6.0.0-Darwin.dmg)
-    2. Open `SCIPOptSuite-6.0.0-Darwin.dmg` and copy the three directories, `bin`, `include`, and `lib` into some place (e.g., `sudo mkdir -p /opt/scip` and then `sudo cp -R /Volumes/SCIPOptSuite-6.0.0-Darwin/bin /Volumes/SCIPOptSuite-6.0.0-Darwin/include /Volumes/SCIPOptSuite-6.0.0-Darwin/lib /opt/scip`)
-    3. Assume Anaconda Python is already installed on `/opt/conda`
-    4. Change the dyld path as follows: (Repeat the same process for `soplex` and `zimpl` as well as `/opt/scip/lib/libscip.6.0.0.0.dylib` instead of `scip`.)
-```
-    $ cd /opt/scip/bin
-    $ otool -L scip (shows the current dyld path)
-    scip:
-            /usr/local/opt/gmp/lib/libgmp.10.dylib (...)
-            /usr/local/opt/gmp/lib/libgmpxx.4.dylib (...)
-            ...
-    $ sudo install_name_tool -change /usr/local/opt/gmp/lib/libgmp.10.dylib @rpath/libgmp.10.dylib scip
-    $ sudo install_name_tool -change /usr/local/opt/gmp/lib/libgmpxx.4.dylib @rpath/libgmpxx.4.dylib scip
-    $ sudo install_name_tool -add_rpath /opt/conda/lib
-    $ otool -L scip (checks whether the dyld path was changed properly)
-    scip:
-            @rpath/libgmp.10.dylib (...)
-            @rpath/libgmpxx.4.dylib (...)
-            ...
-    $ scip (checks whether it works)
-    SCIP version 6.0.0 ...
-```
+    1. Download [SCIPOptSuite-7.0.2-Darwin-no-Ipopt.sh](https://www.scipopt.org/download.php?fname=SCIPOptSuite-7.0.2-Darwin-no-Ipopt.sh).
+    
+    2. Install the file on `/opt/SCIPOptSuite-7.0.2` by running the following comand.
+       ```bash
+       $ sudo bash SCIPOptSuite-7.0.2-Darwin-no-Ipopt.sh --prefix=/opt
+       ```
+       
+    3. Make `gcg` work by modifying the  `LC_LOAD_DYLIB` command.
+       ```bash
+       $ sudo install_name_tool -change libscip.7.0.dylib @executable_path/../lib/libscip.7.0.dylib /opt/SCIPOptSuite-7.0.2-Darwin/bin/gcg
+       ```
+       
+    <div class="alert alert-block alert-warning">
+    <b>Warning:</b> 1. Notice that this installation does not work with PySCIPOpt.<br/>
+      2. Neither `SCIPOptSuite-7.0.2-Darwin-Ipopt-gcc7.sh` nor `SCIPOptSuite-7.0.2-Darwin-Ipopt-gcc10.sh` does not work if the exact libraries were not installed using Homebrew.
+    </div>
+
+   
+
 
   - Installation on Windows Subsystem for Linux (e.g. openSUSE Leap 42 under Windows Subsystem for Linux)
 
@@ -47,35 +42,58 @@ SCIP is currently one of the fastest non-commercial solvers for mixed integer pr
 
     > **Note:** In the case of Cent OS 7, you may need `patchelf` to adjust the ld path. You can install it by running `conda install patchelf` under Linux.
 
-  - Installation on Windows 10
 
-    1. Download [SCIPOptSuite-6.0.0-win64-VS15.exe](http://scip.zib.de/download.php?fname=SCIPOptSuite-6.0.0-win64-VS15.exe)
-    2. Install by double click the icon of the file `SCIPOptSuite-6.0.0-win64-VS15.exe`
-    3. Be sure to add the path.    
 
-  - [PySCIPOpt](https://github.com/SCIP-Interfaces/PySCIPOpt) - Python interface for the SCIP Optimization Suite
-  
-    1. Install [Anaconda Python 3.6](https://www.anaconda.com/download/)
-    2. Install [SCIP 6.0.0](http://scip.zib.de/#download)
-    3. Open a conda prompt and run `conda activate`
-    4. Check that `cython` is already installed by running `conda list | grep cython`. Otherwise, run `conda install cython`
-    5. Set the environment variable `export SCIPOPTDIR=/opt/scip` (Linux & Mac OS X) or `set SCIPOPTDIR=C:\Program Files\SCIPOptSuite 6.0.0` (Windows 10) (See [INSTALL.rst](https://github.com/SCIP-Interfaces/PySCIPOpt/blob/master/INSTALL.rst) for more details)
-    6. Install PySCIPOpt 2.0.0 by running `pip install pyscipopt`
-    7. How to check whether PySCIPOPt 2.0.0 is installed properly.
-      - Mac OS X: `DYLD_LIBRARY_PATH=/opt/scip/lib; ipython -c 'import pyscipopt'` or `export DYLD_LIBRARY_PATH=/opt/scip/lib`
-      - Linux: `LD_LIBRARY_PATH=/opt/scip/lib; ipython -c 'import pyscipopt'` or `export LD_LIBRARY_PATH=/opt/scip/lib`
-      - Windows 10: `ipython -c "import pyscipopt"`
-    8. (**Optional:** Mac OS X) Change the dyld path directly:
-```
-    $ cd /opt/conda/lib/python3.6/site-packages/pyscipopt
-    $ otool -L scip.cpython-36m-darwin.so (shows the current dyld path)
-    scip.cpython-36m-darwin.so:
-	          libscip.6.0.dylib (...)
-            ...
-    $ sudo install_name_tool -change libscip.6.0.dylib @rpath/libscip.6.0.dylib -add_rpath /opt/scip/lib scip.cpython-36m-darwin.so
-    $ otool -L scip.cpython-36m-darwin.so (checks whether the dyld path was changed properly)
-    scip.cpython-36m-darwin.so:
-	          @rpath/libscip.6.0.dylib (...)
-            ...
-    $ ipython -c 'import pyscipopt' (checks whether it works)
-```
+## [PySCIPOpt](https://github.com/SCIP-Interfaces/PySCIPOpt)
+
+Python interface for the SCIP Optimization Suite
+
+- Installation on Windows 10 (64-bit only)
+    1. Requirements:
+       - [Miniconda Python 3](https://docs.conda.io/en/latest/miniconda.html) (Python 3.8 or 3.9, 64-bit)
+       - `SCIPOptSuite-7.0.2` (see above)
+       - [Build Tools for Visual Studio 2019](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019) (Visual C++ build tools only)
+       
+    2. Download [`PySCIPOpt-3.1.1.zip`](https://github.com/scipopt/PySCIPOpt/archive/refs/tags/v3.1.1.zip) (https://github.com/scipopt/PySCIPOpt/releases) and extract the file.
+
+    3. Run the following commands from the command prompt.
+       ```bash
+       > conda create -n scip cython pytest
+       > conda activate scip
+    
+       > cd PySCIPOpt-3.1.1
+       > set SCIPOPTDIR="C:\Program Files\SCIPOptSuite 7.0.2"
+       > pip install .
+       > pytest
+       ```
+
+
+
+- Installation on macOS 10.15 (without Homebrew)
+    1. Requirements:
+      
+       - [Miniconda Python 3](https://docs.conda.io/en/latest/miniconda.html) (Python 3.8 or 3.9, 64-bit)
+       
+    3. Run the following commands.
+       ```bash
+       > conda create -n scip pyscipopt -c conda-forge
+       > conda activate scip
+       ```
+
+
+
+
+## [Google OR-Tools](https://developers.google.com/optimization/)
+
+Google OR-Tools is an open source software suite for optimization, tuned for tackling the world's toughest    problems in vehicle routing, flows, integer and linear programming, and constraint programming. (https://developers.google.com/optimization)
+
+  - Google Optimization Tools in GitHub (https://github.com/google/or-tools)
+    1. Install [Miniconda Python 3](https://docs.conda.io/en/latest/miniconda.html) (Python 3.8 or 3.9, 64-bit)
+    2. Install or-tools by running
+    
+       ```bash
+       $ conda install absl-py protobuf
+       $ pip install ortools
+       ```
+
+
