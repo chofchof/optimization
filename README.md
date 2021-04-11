@@ -34,14 +34,14 @@
 
 3. Open `Advanced system settings(고급 시스템 설정)` in Windows 10 and click `Environment variables(환경 변수)` to add `C:\Program Files\SCIPOptSuite 7.0.2\bin` in the `Path` variable.
 
-#### B. PySCIPOpt-3.1.1
+#### B. PySCIPOpt-3.1.2
 
 1. Requirements:
    - [Miniconda Python 3](https://docs.conda.io/en/latest/miniconda.html) (Python 3.8 or 3.9, 64-bit)
 
 2. Download one of the following wheels.
-   - [`PySCIPOpt-3.1.1-cp38-cp38-win_amd64.whl`](https://github.com/chofchof/optimization/raw/master/wheels/PySCIPOpt-3.1.1-cp38-cp38-win_amd64.whl) (Python 3.8)
-   - [`PySCIPOpt-3.1.1-cp39-cp39-win_amd64.whl`](https://github.com/chofchof/optimization/raw/master/wheels/PySCIPOpt-3.1.1-cp39-cp39-win_amd64.whl) (Python 3.9)
+   - [`PySCIPOpt-3.1.2-cp38-cp38-win_amd64.whl`](https://github.com/chofchof/optimization/raw/master/wheels/PySCIPOpt-3.1.2-cp38-cp38-win_amd64.whl) (Python 3.8)
+   - [`PySCIPOpt-3.1.2-cp39-cp39-win_amd64.whl`](https://github.com/chofchof/optimization/raw/master/wheels/PySCIPOpt-3.1.2-cp39-cp39-win_amd64.whl) (Python 3.9)
 
 3. Run the following commands from the command prompt.
    ```bash
@@ -49,23 +49,28 @@
    > conda activate scip
    ```
 
-#### C. (Optional) Make PySCIPOpt-3.1.1 wheel
+#### C. (Optional) Make PySCIPOpt-3.1.2 wheel
 
 1. Requirements:
    - [Miniconda Python 3](https://docs.conda.io/en/latest/miniconda.html) (Python 3.8 or 3.9, 64-bit)
    - `SCIPOptSuite-7.0.2` (see above)
    - [Build Tools for Visual Studio 2019](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019) (Visual C++ build tools only)
 
-2. Download [`PySCIPOpt-3.1.1.zip`](https://github.com/scipopt/PySCIPOpt/archive/refs/tags/v3.1.1.zip) (https://github.com/scipopt/PySCIPOpt/releases) and extract the file.
+2. Download [`PySCIPOpt-3.1.2.zip`](https://github.com/scipopt/PySCIPOpt/archive/refs/tags/v3.1.2.zip) (https://github.com/scipopt/PySCIPOpt/releases) and extract the file.
 
-3. Run the following commands from the command prompt.
+3. Run the following commands from the command prompt to make a wheel.
    ```bash
    > conda create -n scip cython pytest
    > conda activate scip
     
-   > cd PySCIPOpt-3.1.1
+   > cd PySCIPOpt-3.1.2
    > set SCIPOPTDIR="C:\Program Files\SCIPOptSuite 7.0.2"
-   > pip wheel . # or pip install .
+   > pip wheel .
+   ```
+
+3. Run the following commands from the command prompt to test the installation.
+   ```bash
+   > pip install .
    > pytest
    ```
 
