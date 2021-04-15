@@ -45,8 +45,9 @@
 
 3. Run the following commands from the command prompt.
    ```bash
-   > conda create -n scip python=3.8 # or python=3.9
+   > conda create -n scip python=3.8
    > conda activate scip
+   > pip install PySCIPOpt-3.1.2-cp38-cp38-win_amd64.whl
    ```
 
 #### C. (Optional) Make PySCIPOpt-3.1.2 wheel
